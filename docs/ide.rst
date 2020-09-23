@@ -1,18 +1,19 @@
 ====
-IDEs
+IDE
 ====
 
-There are currently two IDEs available.
+目前有两个IDE可供使用。
 
-Desktop IDE
+桌面IDE
 -----------
-A desktop version is available as a `Visual Studio Code Extension <https://marketplace.visualstudio.com/items?itemName=bsv-scrypt.sCrypt>`_.
-It can easily be found by searching ``sCrypt`` in the Extensions Marketplace. This IDE comes with advanced language features and is intended for professional development.
-A `boilerplate project <https://github.com/scrypt-sv/boilerplate>`_ is a good base to kickstart your own sCrypt project.
+桌面版是一个 `Visual Studio Code插件 <https://marketplace.visualstudio.com/items?itemName=bsv-scrypt.sCrypt>`_ 。
+在插件市场中搜索 ``sCrypt`` 就可以找到。
+这个IDE具有高级的功能，可用于专业开发。
+你可以以 `样板项目 <https://github.com/scrypt-sv/boilerplate>`_ 为基础开始构建你自己的sCrypt项目。
 
-Web IDE
+网页IDE
 -------
-A browser-based IDE can be found at `scrypt.studio <http://scrypt.studio>`_.
-It is for quick learning of sCrypt immediately without any installation and suitable only for small contracts.
-Currently, it does not support importing contracts.
+`scrypt.studio <http://scrypt.studio>`_ 是一个基于浏览器的IDE。
+无需任何安装就可以立即快速学习sCrypt。此IDE仅适用于小型合约的开发。
+目前，它还不支持导入合约功能。
 
