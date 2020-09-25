@@ -1,13 +1,13 @@
 ==================
-Standard Contracts
+标准合约
 ==================
 
-Multiple Contracts
+多个合约
 ==================
-A single file can define multiple contracts. In this case, the last contract acts as the main contract and is what gets compiled.
-Other contracts are dependencies.
+一个文件中可以定义多个合约。在这种情况下，最后一个合约是主合约，这个合约会被编译。
+其他合约都被主合约依赖。
 
-In the following example, a standard P2PKH contract is rewritten using two other contracts: a hash puzzle contract that checks the public key matches the public key hash, and a Pay-to-PubKey (P2PK) contract that verifies signature matches public key.
+在下面这个例子中，标准的P2PKH合约被改写为两个其他合约：一个用来检查公钥和公钥哈希是否匹配的hash puzzle合约，还有一个检查签名和公钥是否匹配的Pay-to-PubKey（P2PK）合约。
 
 .. code-block:: solidity
 
@@ -40,12 +40,12 @@ In the following example, a standard P2PKH contract is rewritten using two other
     }
 
 
-import
-======
-Alternatively, the contact above can be broken into three files. The ``Pay2PubKeyHash`` contact ``import``\s other two contracts as dependencies.
-This allows reusing contracts written by others and forms the basis of contract libraries.
+导入（import）
+==============
+或者，可以将上述合约分到三个文件中。 ``Pay2PubKeyHash`` 合约 ``import`` 其他两个合约作为依赖。
+这就可以重用其他人写的合约，成为构建合约库的基础。
 
-A contract can be instantiated by ``new``. A ``public`` function can be called from ``require``, which takes boolean expression as input.
+可以通过 ``new`` 来实例化一个合约。 ``require`` 函数的参数是条件表达式， 在条件表达式里可以调用合约的 ``public`` 函数。
 
 .. code-block:: solidity
 
@@ -65,11 +65,11 @@ A contract can be instantiated by ``new``. A ``public`` function can be called f
     }
 
 
-Standard Contracts
+标准合约
 ==================
-sCrypt comes with standard libraries that define many commonly used contracts. They are included by default and do not require explicit ``import`` to be used.
+sCrypt自带标准库，里面定义了许多常用的合约。标准库是默认就导入的，不需要写 ``import`` 语句。
 
-The following example shows usage of the standard contract ``P2PKH`` that corresponds to Pay-to-PubKey-Hash contract.
+如下例子展示了对标准合约 ``P2PKH`` 的使用。
 
 .. code-block:: solidity
 
@@ -83,28 +83,28 @@ The following example shows usage of the standard contract ``P2PKH`` that corres
     }
 
 
-Contract ``OP_PUSH_TX``
+``OP_PUSH_TX`` 合约
 -----------------------
-One grave misconception regarding bitcoin script is that its access is only limited to the data provided in the locking script and corresponding unlocking script.
-Thus, its scope and capability are greatly underestimated.
+对比特币脚本的一个严重误解是，脚本只能访问锁定脚本以及对应的解锁脚本中提供的数据。
+因此，脚本的范围和能力被大大低估了。
 
-sCrypt comes with a powerful contract called ``Tx`` that allows inspection of the **ENTIRE TRANSACTION** containing the contract itself, besides the locking script and unlocking script.
-It can be regarded as a pseudo opcode ``OP_PUSH_TX`` that pushes the current transaction into the stack, which can be inspected at runtime.
-More precisely, it enables inspection of the preimage used in signature verification defined in `BIP143`_.
-The format of the preimage is as follows:
+sCrypt提供了一个强大的合约叫做 ``Tx``，它允许合约访问合约所在的 **整个交易** ，包括锁定脚本和解锁脚本。
+我们把这种方法当成一个伪操作码 ``OP_PUSH_TX`` ，它可以把当前交易压到栈里，这样就可以在运行时访问了。
+更准确地说，可以访问的是在签名校验时用到的原像（preimage）， 在 `BIP143`_ 中有原像的详细定义。
+原像的数据格式如下：
 
-    1. nVersion of the transaction (4-byte little endian)
-    2. hashPrevouts (32-byte hash)
-    3. hashSequence (32-byte hash)
-    4. outpoint (32-byte hash + 4-byte little endian) 
-    5. scriptCode of the input (serialized as scripts inside CTxOuts)
-    6. value of the output spent by this input (8-byte little endian)
-    7. nSequence of the input (4-byte little endian)
-    8. hashOutputs (32-byte hash)
-    9. nLocktime of the transaction (4-byte little endian)
-    10. sighash type of the signature (4-byte little endian)
+    1. 交易的版本号（nVersion of the transaction）（4字节小端）
+    2. 输入的输出点哈希（hashPrevouts） （32字节哈希值）
+    3. 序列号哈希（hashSequence） （32字节哈希值）
+    4. 此输入的输出点（outpoint） （32字节哈希值 + 4字节小端） 
+    5. 此输入的锁定脚本（scriptCode of the input）（在CTxOuts中序列化为脚本）
+    6. 此输入对应的输出中包含的聪数（value of the output spent by this input） (8字节小端)
+    7. 此输入的序列号（nSequence of the input） （4字节小端）
+    8. 输出的哈希（hashOutputs）（32字节哈希值）
+    9. 交易的nLocktime（nLocktime of the transaction）（4字节小端）
+    10. 交易的签名哈希类型（sighash type of the signature）（4字节小端）
 
-As an example, contract ``CheckLockTimeVerify`` ensures coins are timelocked and cannot be spent before ``matureTime`` is reached, similar to `OP_CLTV`_.
+举个例子，合约 ``CheckLockTimeVerify`` 确保合约中的币是时间锁定的，在 ``matureTime`` 这个时间点之前不能被花掉。其功能类似 `OP_CLTV`_。
 
 .. code-block:: solidity
 
@@ -128,19 +128,19 @@ As an example, contract ``CheckLockTimeVerify`` ensures coins are timelocked and
         }
     }
 
-More details can be found in `this article <https://medium.com/@xiaohuiliu/op-push-tx-3d3d279174c1>`_.
-To customize ECDSA signing, such as choosing ephemeral key, there is a more general version called `TxAdvanced <https://medium.com/@xiaohuiliu/advanced-op-push-tx-78ce84f69a66>`_.
+更多细节参见 `这篇文章 <https://medium.com/@xiaohuiliu/op-push-tx-3d3d279174c1>`_ 。
+为了可以定制ECDSA签名，比如选择临时密钥，可以使用一个更加通用的版本 `TxAdvanced <https://medium.com/@xiaohuiliu/advanced-op-push-tx-78ce84f69a66>`_。
 
-Full List
+完整列表
 ---------
 
 .. list-table::
     :header-rows: 1
     :widths: 20 20 20
 
-    * - Contract 
-      - Constructor parameters
-      - Public function
+    * - 合约
+      - 构造参数
+      - 公有函数
     
     * - P2PKH
       - Ripemd160 pubKeyHash
@@ -158,8 +158,8 @@ Full List
       - None
       - checkPreimage(bytes sighashPreimage)
 
-.. [#] ``X`` is hashing function and can be Ripemd160/Sha1/Sha256/Hash160
-.. [#] ``Y`` is hashing function return type and can be Ripemd160/Sha1/Sha256/Ripemd160
+.. [#] ``X`` 是哈希函数，可以是Ripemd160/Sha1/Sha256/Hash160
+.. [#] ``Y`` 是哈希函数的返回值类型，可以是Ripemd160/Sha1/Sha256/Ripemd160
 
 .. _BIP143: https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/abc/replay-protected-sighash.md
 .. _OP_CLTV: https://en.bitcoin.it/wiki/Timelock#CheckLockTimeVerify
