@@ -1,10 +1,10 @@
 =========
-Functions
+函数
 =========
 
-User-Defined Functions
+用户自定义函数
 ======================
-sCrypt enables developers to define their own functions as exemplified below:
+sCrypt允许开发者定义自己的函数，如下所示：
 
 .. code-block:: solidity
 
@@ -12,12 +12,12 @@ sCrypt enables developers to define their own functions as exemplified below:
         return a + b;
     }
 
-They are only visible within the contract, similar to ``private`` functions in Solidity.
+这些函数只在合约内可见，类似Solidity里的 ``private`` 函数。
 
-public function
+公有函数
 ---------------
-A public function returns ``true`` if it runs to completion and ``false`` otherwise. 
-It does not have ``returns`` and ``return`` parts, as they are included implicitly. In other words, 
+如果公有函数可以运行完，则返回 ``true`` ，否则返回 ``false`` 。
+公有函数没有 ``return`` ，返回语句是隐式包含其中的。也就是说，
 
 .. code-block:: solidity
 
@@ -25,7 +25,7 @@ It does not have ``returns`` and ``return`` parts, as they are included implicit
         require(a == 0);
     }
 
-is functionally equivalent to
+功能上等同于
 
 .. code-block:: solidity
 
@@ -34,9 +34,9 @@ is functionally equivalent to
         return true;
     }
 
-static function and property
+静态函数和静态属性
 ----------------------------
-A static function/property can be referenced with contract name without an instantiated contract, similar to a static function/property in Javascript or C+.
+可以通过合约名来直接引用静态函数/方法，而不必创建合约实例，就像Javascript或C++中的静态函数/方法一样。
 
 .. code-block:: solidity
 
@@ -61,8 +61,8 @@ A static function/property can be referenced with contract name without an insta
 
 ``return``
 ----------
-Due to the lack of native ``return`` semantics support in script, a function currently must end with a ``return`` statement and it is the only valid place for a ``return`` statement.
-This requirement may be relaxed in the future. This is usually not a problem since it can be circumvented as follows:
+由于比特币脚本缺乏对 ``return`` 语义的支持，所以函数必须以 ``return`` 语句结尾，并且 ``return`` 语句只能放在函数末尾，不能放在其他位置。
+将来可能会放松这个限制。一般来说这不是问题，可以用如下方式避免在其他位置返回：
 
 .. code-block:: solidity
 
@@ -74,7 +74,7 @@ This requirement may be relaxed in the future. This is usually not a problem sin
         }
     }
 
-can be rewritten as 
+可以改写成
 
 .. code-block:: solidity
 
@@ -89,25 +89,25 @@ can be rewritten as
         return ret;
     }
 
-Recursion
+递归
 ---------
-Recursion is disallowed. A function cannot call itself in its body.
+不允许递归。函数体内不允许调用自己。
 
-.. Warning:: Indirect recursion detection is currently not implemented. If function A calles function B, which in turn calls A, the compilation process will hang. Care must be taken to avoid doing so.
+.. Warning:: 当前还没有实现对间接递归的检测。如果函数A调用了函数B，函数B又调用了函数A，那么编译进程会被挂起。需要小心以避免引起间接递归。
 
 
-Library Functions
+库函数
 =================
-The following functions come with sCrypt and are available globally.
+sCrypt实现了如下库函数，在全局可见。
 
-Math
+数学
 ----
 * ``int abs(int a)``
 * ``int min(int a, int b)``
 * ``int max(int a, int b)``
 * ``bool within(int x, int min, int max)``
 
-Hashing
+哈希
 -------
 * ``Ripemd160 ripemd160(bytes b)``
 * ``Sha1 sha1(bytes b)``
@@ -120,17 +120,17 @@ Hashing
 
   sha256(sha256(b))
 
-Signature Verification
+签名校验
 ----------------------
 * ``bool checkSig(Sig sig, PubKey pk)``
 * ``bool checkMultiSig(Sig[] sigs, PubKey[] pks)``
 
-bytes Operations
+字节数组操作
 ----------------
 * ``bytes b[start:end]``
 
-  Returns subarray from index ``start`` (inclusive) to ``end`` (exclusive). 
-  ``start`` is ``0`` if omitted, ``end`` is ``length(b)`` if omitted.
+  返回从 ``start`` （包括）开始到 ``end`` （不包括）结束的子数组。
+  如果 ``start`` 被省略，则它的值为 ``0`` ，如果 ``end`` 被省略， 则它的值为 ``length(b)`` 。
 
 .. code-block:: solidity
 
@@ -141,11 +141,11 @@ bytes Operations
   
 * ``b1 + b2``
 
-  Returns the concatenation of bytes ``b1`` and bytes ``b2``.
+  把 ``b1`` 和 ``b2`` 连接成一个字节数组并返回。
 
 * ``reverseBytes20(bytes b)`` ``reverseBytes32(bytes b)``
 
-  Returns reversed bytes of ``b``, which is of 20/32 bytes. They are often useful when converting a number between little-endian and big-endian.
+  反转长度为20或32的字节数组。当对数字进行大小端转换时很有用。
 
 .. code-block:: solidity
 
@@ -154,9 +154,9 @@ bytes Operations
   
 * ``bytes num2bin(int num, int size)``
 
-  Converts a number ``num`` into a byte array of certain size ``size``, including the sign bit. It fails if the number cannot be accommodated.
+  把数字 ``num`` 转换为字节数为 ``size`` 的字节数组，包括符号比特。如果字节数组无法容纳被转换的数字，则会转换失败。
 
 * ``int length(bytes b)``
 
-  Returns the length of ``b``.
+  返回 ``b`` 的长度。
 
