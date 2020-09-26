@@ -22,7 +22,7 @@ sCrypt中的合约（contract）在概念上类似于面向对象编程中的类
 构造函数（constructor）
 =======================
 每个合约最多只能有一个构造函数。用于初始化合约的成员变量。
-例如，初始化P2PKH合约的公钥哈希，或者hash puzzle合约的secret hash。
+例如，初始化P2PKH合约的公钥哈希，或者哈希谜题（hash puzzle）合约的secret hash。
 
 默认构造函数
 -------------------
