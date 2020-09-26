@@ -128,8 +128,8 @@ sCrypt提供了一个强大的合约叫做 ``Tx``，它允许合约访问合约�
         }
     }
 
-更多细节参见 `这篇文章 <https://medium.com/@xiaohuiliu/op-push-tx-3d3d279174c1>`_ 。
-为了可以定制ECDSA签名，比如选择临时密钥，可以使用一个更加通用的版本 `TxAdvanced <https://medium.com/@xiaohuiliu/advanced-op-push-tx-78ce84f69a66>`_。
+更多细节参见 `这篇文章 <https://blog.csdn.net/freedomhero/article/details/107306604>`_ 。
+为了可以定制ECDSA签名，比如选择临时密钥，可以使用一个更加通用的版本 `TxAdvanced <https://blog.csdn.net/freedomhero/article/details/107333738>`_。
 
 完整列表
 ---------
