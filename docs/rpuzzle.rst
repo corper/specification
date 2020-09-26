@@ -2,10 +2,9 @@
 R-Puzzle
 ========
 
-In R-puzzle, an ephemeral key ``k`` is never revealed. Instead ``r``, the x coordinate its its corresponding public key, 
-is revealed and from ``r`` along with the signature, the knowledge of ``k`` can be proved using existing ``checkSig``.
+在R-puzzle中，临时私钥 ``k`` 不会被公开，而对应的公钥的横坐标 ``r`` 会被公开。通过 ``r`` 和签名，就可以用 ``checkSig`` 检验是否知道 ``k`` 。
 
-One crucial step in R-Puzzle is to extract ``r`` from `DER`_ encoded signature. The following is much easier than what is presented in the `R-Puzzle`_ talk.
+R-Puzzle的一个关键步骤就是从 `DER`_ 编码的签名中提取 ``r`` 。用如下代码，比在 `R-Puzzle`_ 的讨论中展示的方法容易多了。
 
 .. code-block:: solidity
 
