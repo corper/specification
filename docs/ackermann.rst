@@ -1,9 +1,9 @@
-==================
-Ackermann Function
-==================
+==================================
+阿克曼函数（Ackermann Function）
+==================================
 
-The Ackermann function is a classic example of a recursive function, notable especially because it is not a primitive recursive function. 
-It grows very quickly in value, as does the size of its call tree. The Ackermann function is usually defined as follows:
+阿克曼函数是递归函数的经典示例，特别值得注意的是它并不是一个原始递归函数。
+它的值增长得非常快，调用树也增长得非常快。阿克曼函数通常定义如下：
 
 .. math::
 
@@ -15,7 +15,7 @@ It grows very quickly in value, as does the size of its call tree. The Ackermann
     \end{cases}
 
 
-nCrypt has devised a way to calculate the value of the Ackermann function using `native scripts`_. But it is definitely non-trivial. Below we present a much simpler version. 
+nCrypt设计了一种使用 `原生脚本`_ 计算阿克曼函数值的方法。它绝对是非平凡的。下面我们给出了一个简单得多的版本。
 
 .. code-block:: solidity
 
@@ -26,8 +26,8 @@ nCrypt has devised a way to calculate the value of the Ackermann function using 
         function ackermann(int m, int n) returns (int) {
             bytes stk = num2bin(m, 1);
 
-            // run this function off chain to get the loop count and set it here
-            // e.g., (2, 1) requires 14 loops, (3, 5) 42438
+            // 在链下运行这个函数，来得到循环次数，并设置到下面的循环中
+            // 比如， (2, 1) 需要14次循环，(3, 5)需要42438次循环
             loop (14) {
                 if (length(stk) > 0) {
                     bytes top = stk[0:1];
@@ -61,4 +61,4 @@ nCrypt has devised a way to calculate the value of the Ackermann function using 
     }
 
 
-.. _native scripts: https://onedrive.live.com/?authkey=%21AMkX_N43zpZknj4&cid=68E98EDCE5760610&id=68E98EDCE5760610%2181946&parId=68E98EDCE5760610%2116494&o=OneUp
+.. _原生脚本: https://onedrive.live.com/?authkey=%21AMkX_N43zpZknj4&cid=68E98EDCE5760610&id=68E98EDCE5760610%2181946&parId=68E98EDCE5760610%2116494&o=OneUp
