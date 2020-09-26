@@ -1,8 +1,8 @@
-===============
-Rabin Signature
-===============
+===============================
+拉宾签名（Rabin Signature）
+===============================
 
-`Rabin signature <https://medium.com/@xiaohuiliu/access-external-data-from-bitcoin-smart-contracts-2ecdc7448c43>`_ is an alternative form of digital signature to ECDSA used in Bitcoin.
+`拉宾签名 <https://blog.csdn.net/freedomhero/article/details/107237537>`_ 是比特币中使用的ECDSA数字签名的一种替代形式。
 
 .. code-block:: solidity
 
@@ -13,14 +13,14 @@ Rabin Signature
         }
 
         function hash(bytes x) returns (bytes) {
-            // expand into 512 bit hash
+            // 扩展成512比特的哈希值
             bytes hx = sha256(x);
             int idx = length(hx) / 2;
             return sha256(hx[:idx]) + sha256(hx[idx:]);
         }
 
         function fromLEUnsigned(bytes b) returns (int) {
-            // append positive sign byte. This does not hurt even when sign bit is already positive
+            // 附加上符号字节，保证值不会为负数。即使符号比特已经是正的了，也不会有什么副作用。
             return unpack(b + b'00');
         }
     }
