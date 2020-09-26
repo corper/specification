@@ -46,7 +46,7 @@
 -----------
 
 * **bool** - 布尔类型，值为 ``true`` 或 ``false`` 。
-* **int** - 有符号的任意长度整数类型，有十进制和十六进制两种格式。
+* **int** - 有符号的任意长度整数类型，字面量（literals）有十进制和十六进制两种格式。
 
     .. code-block:: solidity
 
@@ -55,35 +55,77 @@
         int a3 = 55066263022277343669578718895168534326250603453777594175500187360389116729240;
         int a4 = 0xFF8C;
 
-* **bytes** - 可变长度的字节数组，以 ``b`` 开头，后面跟单引号引起来的十六进制数。
+* **byte** - 单字节，字面量（literals）为单引号引起来的十六进制格式。
 
     .. code-block:: solidity
 
-        bytes b1 = b'ffee1234';
+        byte a1 = 'FF';
+
+数组类型
+---------
+数组是类型相同的值的列表。
+
+* **数组字面量** - 用逗号分隔的表达式列表，用方括号扩起来。
+
+    .. code-block:: solidity
+
+        byte[] a = ['ff', 'ee', '11', '22'];
+        bool[] b = [false, false && true || false, true || (1 > 2)];
+        int[] c = [72, -4 - 1 - 40, 833 * (99 + 9901) + 8888];
+        int[] empty = [];
+
+* **下标操作** - 下标从0开始。下标越界会立即导致合约执行失败。
+
+    .. code-block:: solidity
+
+        int[] a = [1, 4, 2]
+        int d = a[2];
+        a[1] = -4;
+
+* **分片操作** - ``b[start:end]`` 返回 ``b`` 的子数组，从 ``start`` （包括）开始，到 ``end`` （不包括）结束。
+  如果 ``start`` 被省略，则从 ``0`` 开始。如果 ``end`` 省略，则到数组最后一个元素（包括）结束。
+
+    .. code-block:: solidity
+
+        // see "bytes" type below
+        bytes b = b'0011223344556677';
+        // b[3:6] == b'334455'
+        // b[:4] == b'00112233'
+        // b[5:] = b'556677'
+
+* **连接**
+
+    .. code-block:: solidity
+
+        int s = [3, 2] + [1, 4];  // s = [3, 2, 1, 4]
+
+``bytes`` 类型
+--------------
+``byte[]`` 类型经常被使用，所以定义了一个它的别名 ``bytes`` 。
+它是变长的字节数组，字面量以 ``b`` 开头，后面跟用单引号引起来的十六进制。
+
+    .. code-block:: solidity
+
+        bytes b0 = ['ff', 'ee', '12', '34'];
+        bytes b1 = b'ffee1234'; // b0 和 b1 相等
         bytes b2 = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
+        bytes b3 = b'1122' + b'eeff'; // b3 is b'1122eeff'
 
-用函数 ``unpack`` 可以把 ``bytes`` 类型转换为 ``int`` 类型。采用小端 `符号-值 表示法 <https://www.tutorialspoint.com/sign-magnitude-notation>`_ ，
-最高位比特表示符号（ ``0`` 为正， ``1`` 为负）。 用函数 ``pack`` 可以把 ``int`` 类型转换为 ``bytes`` 类型。
-
-    .. code-block:: solidity
-
-        int a1 = unpack(b'36');    // 54 十进制
-        int a2 = unpack(b'b6');    // -54
-        int a3 = unpack(b'e803');  // 1000
-        int a4 = unpack(b'e883');  // -1000
-        bytes b = pack(a4);        // b'e883'
-
-* **auto** 关键字 - ``auto`` 关键字表示变量的类型由变量的初始值来决定。
+类型接口
+--------------
+``auto`` 关键字表示变量的类型由变量的初始值自动推导出来。
 
     .. code-block:: solidity
 
         auto a1 = b'36';      // bytes a1 = b'36';
         auto a2 = 1 + 5 * 3;  // int a2 = 1 + 5 * 3;
 
+领域子类型
+===============
+如下是一些在比特币语境中特定的子类型，用于进一步提高类型安全性。
+
 ``bytes`` 的子类型
 ---------------------
-
-这些子类型是 ``bytes`` 类型的特定版本，用于进一步提高类型安全性。
 要把 ``bytes`` 类型强制转换成某个子类型，必须显式调用与该子类型同名的函数。
 
 * **PubKey** - 公钥类型。

@@ -125,23 +125,26 @@ sCrypt实现了如下库函数，在全局可见。
 * ``bool checkSig(Sig sig, PubKey pk)``
 * ``bool checkMultiSig(Sig[] sigs, PubKey[] pks)``
 
-字节数组操作
-----------------
-* ``bytes b[start:end]``
+``字节数组`` 操作
+-----------------
+* 与 ``int`` 互相转换
 
-  返回从 ``start`` （包括）开始到 ``end`` （不包括）结束的子数组。
-  如果 ``start`` 被省略，则它的值为 ``0`` ，如果 ``end`` 被省略， 则它的值为 ``length(b)`` 。
+用函数 ``unpack`` 可以把 ``bytes`` 类型转换为 ``int`` 类型。
+采用小端格式的 `符号-值 表示法 <https://www.tutorialspoint.com/sign-magnitude-notation>`_ ，
+最高位比特表示符号（ ``0`` 为正， ``1`` 为负）。 
+用函数 ``pack`` 可以把 ``int`` 类型转换为 ``bytes`` 类型。
 
-.. code-block:: solidity
+    .. code-block:: solidity
 
-        bytes b = b'0011223344556677';
-        // b[3:6] == b'334455'
-        // b[:4] == b'00112233'
-        // b[5:] = b'556677'
-  
-* ``b1 + b2``
+        int a1 = unpack(b'36');    // 54 十进制
+        int a2 = unpack(b'b6');    // -54
+        int a3 = unpack(b'e803');  // 1000
+        int a4 = unpack(b'e883');  // -1000
+        bytes b = pack(a4);        // b'e883'
 
-  把 ``b1`` 和 ``b2`` 连接成一个字节数组并返回。
+* ``bytes num2bin(int num, int size)``
+
+  把数字 ``num`` 转换为字节数为 ``size`` 的字节数组，包括符号比特。如果字节数组无法容纳被转换的数字，则会转换失败。
 
 * ``reverseBytes20(bytes b)`` ``reverseBytes32(bytes b)``
 
@@ -151,12 +154,4 @@ sCrypt实现了如下库函数，在全局可见。
 
         // returns b'6cfeea2d7a1d51249f0624ee98151bfa259d095642e253d8e2dce1e79df33f79'
         reverseBytes32(b'793ff39de7e1dce2d853e24256099d25fa1b1598ee24069f24511d7a2deafe6c')
-  
-* ``bytes num2bin(int num, int size)``
-
-  把数字 ``num`` 转换为字节数为 ``size`` 的字节数组，包括符号比特。如果字节数组无法容纳被转换的数字，则会转换失败。
-
-* ``int length(bytes b)``
-
-  返回 ``b`` 的长度。
 
