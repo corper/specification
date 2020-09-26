@@ -1,8 +1,8 @@
-======================
-Pay to Public Key Hash
-======================
-Pay-to-PubKey-Hash (`P2PKH <https://learnmeabitcoin.com/guide/p2pkh>`_) contract is used to send bitcoins to a bitcoin address. It is the most common contract on the Bitcoin network.
-Such contracts are unlocked by the public key and a signature created by the corresponding private key.
+============================================
+支付到公钥哈希（Pay to Public Key Hash）
+============================================
+支付到公钥哈希（Pay-to-PubKey-Hash） （`P2PKH <https://learnmeabitcoin.com/guide/p2pkh>`_） 合约被用来把比特币发送到比特币地址。是比特币网络中最常见的合约。
+这种合约可以用两个参数来解锁：公钥和对应私钥创建的签名。
 
 .. code-block:: solidity
 
