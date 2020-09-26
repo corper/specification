@@ -1,9 +1,9 @@
-=======================
-Multiparty Hash Puzzles
-=======================
+=========================================
+多方哈希谜题（Multiparty Hash Puzzles）
+=========================================
 
-In a hash puzzle contract, the spender has to provide a preimage ``x`` that hashes to a predefined value ``y`` to unlock a UTXO. It can be
-extended to multiple parties so that multiple preimages have to be provided such that ``y1 = H(x1)``, ``y2 = H(x2)``, ..., ``yN = H(xN)`` [#]_. Below shows an examples of three parties.
+在哈希谜题（hash puzzle）合约中，花费方必须提供一个原像（preimage） ``x`` ，让 ``x`` 的哈希值等于预先定义好的值 ``y`` ，才可以解锁UTXO。
+这种合约可以扩展到多方，提供多个原像来满足 ``y1 = H(x1)`` ， ``y2 = H(x2)`` ， ...， ``yN = H(xN)`` [#]_ 。下面展示了一个三方的例子。
 
 .. code-block:: solidity
 
@@ -23,13 +23,13 @@ extended to multiple parties so that multiple preimages have to be provided such
     }
 
 
-The above solution is problematic when ``N`` is large since all ``N`` hashes have to be included in the locking script, bloating the transaction. 
-Instead, we can combine all ``y``'s into a single y such that ``y = H(H(y1 || y2) || y3)`` [#]_ as shown below.
+上面的方案在当 ``N`` 比较大时会有问题，因为在锁定脚本里要把 ``N`` 个哈希值都包含进去，这会让交易变大。
+有个替代方案，我们可以把所有的 ``y`` 值放到一个里面： ``y = H(H(y1 || y2) || y3)`` [#]_ ，如下所示。
 
 .. code-block:: solidity
 
     contract MultiPartyHashPuzzlesCompact {
-        // only 1 hash needs to go into the locking script, saving space
+        // 锁定脚本里只需要一个哈希值，节省空间
         Sha256 combinedHash; // combinedHash = b'C9392767AB23CEFF09D207B9223C0C26F01A7F81F8C187A821A4266F8020064D'
 
         // preimage1: e.g., "bsv" -> b'627376'
@@ -47,5 +47,5 @@ Instead, we can combine all ``y``'s into a single y such that ``y = H(H(y1 || y2
     }
 
 
-.. [#] ``H`` is a hash function. An online hash calculator can be found `here <https://www.pelock.com/products/hash-calculator>`_.
-.. [#] ``||`` is concatenation.
+.. [#] ``H`` 哈希函数。 `这里 <https://www.pelock.com/products/hash-calculator>`_ 有个在线的哈希计算器。
+.. [#] ``||`` 表示连接。
