@@ -55,7 +55,7 @@ sCrypt允许开发者定义自己的函数，如下所示：
 
     contract Bar {
         public function unlock(int y) {
-            require(y == Foo.sum(1, 2));
+            require(y == Foo.double(1, 2));
         }
     }
 
