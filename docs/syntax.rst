@@ -146,7 +146,7 @@
 
         Sig sig = Sig(b'3045022100b71be3f1dc001e0a1ad65ed84e7a5a0bfe48325f2146ca1d677cf15e96e8b80302206d74605e8234eae3d4980fcd7b2fdc1c5b9374f0ce71dea38707fccdbd28cf7e41');
 
-* **Ripemd160** - RIPEMD-160哈希类型.
+* **Ripemd160** - RIPEMD-160哈希类型。
 
     .. code-block:: solidity
 
@@ -164,12 +164,18 @@
 
         Sha256 s = Sha256(b'00112233445566778899aabbccddeeffffeeddccbbaa99887766554433221100');
 
-* **SigHashType** - 签名哈希类型
+* **SigHashType** - 签名哈希类型。
 
     .. code-block:: solidity
 
         SigHashType s = SigHashType(b'01');
         SigHashType s = SigHash.ALL | SigHash.ANYONECANPAY;
+
+* **SigHashPreimage** - 签名哈希原像类型（a sighash preimage type）。
+
+    .. code-block:: solidity
+
+        SigHashPreimage s = SigHashPreimage(b'0100000028bcef7e73248aa273db19d73');
 
 * **OpCodeType** - 操作码类型
 
