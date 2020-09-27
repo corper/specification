@@ -23,7 +23,7 @@ nCrypt设计了一种使用 `原生脚本`_ 计算阿克曼函数值的方法，
         int a;  // a = 2
         int b;  // b = 1
 
-        function ackermann(int m, int n) returns (int) {
+        function ackermann(int m, int n): int {
             bytes stk = num2bin(m, 1);
 
             // 在链下运行这个函数，来得到循环次数，并设置到下面的循环中

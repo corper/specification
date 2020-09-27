@@ -12,14 +12,14 @@
             require((sig * sig) % n == h % n);
         }
 
-        function hash(bytes x) returns (bytes) {
+        function hash(bytes x): bytes {
             // 扩展成512比特的哈希值
             bytes hx = sha256(x);
             int idx = length(hx) / 2;
             return sha256(hx[:idx]) + sha256(hx[idx:]);
         }
 
-        function fromLEUnsigned(bytes b) returns (int) {
+        function fromLEUnsigned(bytes b): int {
             // 附加上符号字节，保证值不会为负数。即使符号比特已经是正的了，也不会有什么副作用。
             return unpack(b + b'00');
         }

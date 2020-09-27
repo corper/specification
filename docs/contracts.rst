@@ -122,7 +122,7 @@ sCrypt提供了一个强大的合约叫做 ``Tx``，它允许合约访问合约�
             require(nLocktime >= this.matureTime);
         }
         
-        function fromLEUnsigned(bytes b) returns (int) {
+        function fromLEUnsigned(bytes b): int {
             // append positive sign byte. This does not hurt even when sign bit is already positive
             return unpack(b + b'00');
         }

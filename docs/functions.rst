@@ -8,7 +8,7 @@ sCrypt允许开发者定义自己的函数，如下所示：
 
 .. code-block:: solidity
 
-    function sum(int a, int b) returns (int) {
+    function sum(int a, int b): int {
         return a + b;
     }
 
@@ -29,7 +29,7 @@ sCrypt允许开发者定义自己的函数，如下所示：
 
 .. code-block:: solidity
 
-    public function sum(int a) returns (bool) {
+    public function sum(int a): bool {
         require(a == 0);
         return true;
     }
@@ -44,11 +44,11 @@ sCrypt允许开发者定义自己的函数，如下所示：
         int i;
         static int N = 0;
 
-        static function incByN(int a) returns (int) {
+        static function incByN(int a): int {
                 return a + Foo.N;
         }
 
-        function double(int x) returns (int) {
+        function double(int x): int {
             return Foo.incByN(x) + this.i;
         }
     }
@@ -66,7 +66,7 @@ sCrypt允许开发者定义自己的函数，如下所示：
 
 .. code-block:: solidity
 
-    function abs(int a) returns (int) {
+    function abs(int a): int {
         if (a > 0) {
             return a;
         } else {
@@ -78,7 +78,7 @@ sCrypt允许开发者定义自己的函数，如下所示：
 
 .. code-block:: solidity
 
-    function abs(int a) returns (int) {
+    function abs(int a): int {
         int ret = 0;
 
         if (a > 0) {
