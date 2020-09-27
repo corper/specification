@@ -17,7 +17,7 @@ sCrypt会让开发链上运行的智能合约变得轻松。
 * 静态类型。类型检查可以在编译时就帮助检查出很多错误。
 
 
-.. 警告:: sCrypt仍处于试验阶段，仅用于小规模使用。
+.. warning:: sCrypt仍处于试验阶段，仅用于小规模使用。
 
 .. toctree::
    :maxdepth: 2
@@ -45,8 +45,14 @@ sCrypt会让开发链上运行的智能合约变得轻松。
    rabin
    multipartyhashpuzzles
 
+.. toctree::
+   :maxdepth: 1
+   :caption: 高级使用
+
+   asm
+
 联系方式
--------
+---------
 `scrypt.io <https://scrypt.io>`_
 
 `Slack <https://join.slack.com/t/scryptworkspace/shared_invite/enQtNzQ1OTMyNDk1ODU3LTJmYjE5MGNmNDZhYmYxZWM4ZGY2MTczM2NiNTIxYmFhNTVjNjE5MGYwY2UwNDYxMTQyNGU2NmFkNTY5MmI1MWM>`_
