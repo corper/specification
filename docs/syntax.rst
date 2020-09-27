@@ -74,11 +74,17 @@
         int[] c = [72, -4 - 1 - 40, 833 * (99 + 9901) + 8888];
         int[] empty = [];
 
+* **length()** - 返回数组的长度。
+
+    .. code-block:: solidity
+
+        int a = length([1, 4, 2]); // a == 3
+
 * **下标操作** - 下标从0开始。下标越界会立即导致合约执行失败。
 
     .. code-block:: solidity
 
-        int[] a = [1, 4, 2]
+        int[] a = [1, 4, 2];
         int d = a[2];
         a[1] = -4;
 
