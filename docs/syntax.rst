@@ -303,6 +303,11 @@ exit()
     * - 11
       - ``||``
       - 左关联
+
+    * - 12
+      - ``? : ``
+      - 右关联
+
 ..
     explain &&,|| evaluates both sides regardless
 
