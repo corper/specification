@@ -116,7 +116,7 @@ sCrypt提供了一个强大的合约叫做 ``Tx``，它允许合约访问合约�
             require(Tx.checkPreimage(sighashPreimage));
             
             // parse nLocktime
-            int len = length(sighashPreimage);
+            int len = len(sighashPreimage);
             int nLocktime = this.fromLEUnsigned(sighashPreimage[len - 8 : len - 4]);
 
             require(nLocktime >= this.matureTime);

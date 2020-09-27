@@ -15,7 +15,7 @@
         function hash(bytes x): bytes {
             // 扩展成512比特的哈希值
             bytes hx = sha256(x);
-            int idx = length(hx) / 2;
+            int idx = len(hx) / 2;
             return sha256(hx[:idx]) + sha256(hx[idx:]);
         }
 

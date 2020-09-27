@@ -29,12 +29,12 @@ nCrypt设计了一种使用 `原生脚本`_ 计算阿克曼函数值的方法，
             // 在链下运行这个函数，来得到循环次数，并设置到下面的循环中
             // 比如， (2, 1) 需要14次循环，(3, 5)需要42438次循环
             loop (14) {
-                if (length(stk) > 0) {
+                if (len(stk) > 0) {
                     bytes top = stk[0:1];
                     m = unpack(top);
 
                     // pop
-                    stk = stk[1:length(stk)];
+                    stk = stk[1:len(stk)];
 
                     if (m == 0) {
                         n = n + m + 1;
