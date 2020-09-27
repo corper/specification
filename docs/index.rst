@@ -47,6 +47,8 @@ sCrypt会让开发链上运行的智能合约变得轻松。
 
 联系方式
 -------
+`scrypt.io <https://scrypt.io>`_
+
 `Slack <https://join.slack.com/t/scryptworkspace/shared_invite/enQtNzQ1OTMyNDk1ODU3LTJmYjE5MGNmNDZhYmYxZWM4ZGY2MTczM2NiNTIxYmFhNTVjNjE5MGYwY2UwNDYxMTQyNGU2NmFkNTY5MmI1MWM>`_
 
 `Telegram <https://t.me/joinchat/GwaRAxKT16JjXyHt5PuhHw>`_
