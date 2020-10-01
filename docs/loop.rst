@@ -63,7 +63,7 @@ sCrypt通过重复循环体 ``maxLoopCount`` 次来实现循环。
         }
     }
 
-break
+跳出循环
 =====
 .. code-block:: solidity
 

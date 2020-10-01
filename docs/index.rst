@@ -47,7 +47,7 @@ sCrypt会让开发链上运行的智能合约变得轻松。
 
 .. toctree::
    :maxdepth: 1
-   :caption: 高级使用
+   :caption: 高级用法
 
    asm
 
